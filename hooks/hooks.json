@@ -1,0 +1,26 @@
+{
+  "description": "Хуки памяти коуча — реплика из Loreground 0.15.1. Старт сессии: сторож свежести кодекса. После записи: автопрогон валидатора базы. Оба молчат, если в проекте нет метки сборки .loreground. Третий хук комплекта, startup-load.py, здесь НЕ подключён намеренно — см. README.md рядом.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/codex-freshness.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/validate-on-write.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
