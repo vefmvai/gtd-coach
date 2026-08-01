@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "todoist": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/todoist.sh",
+      "args": []
+    },
+    "calendar": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/calendar.sh",
+      "args": []
+    }
+  }
+}
