@@ -93,7 +93,7 @@ tools:
 из документации, поэтому не может устареть:
 
 ```bash
-python -m coach_todoist_mcp.table    # кнопки, тариф, что грузится
+python -m todoist_mcp.table    # кнопки, тариф, что грузится
 python -m gcal_mcp.table
 ```
 

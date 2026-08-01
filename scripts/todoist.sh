@@ -38,11 +38,11 @@ export COACH_TZ="${COACH_TZ:-Europe/Moscow}"
 
 # ── запуск ────────────────────────────────────────────────────────────────────
 if [ -n "${TODOIST_MCP_PYTHON:-}" ]; then
-  exec "${TODOIST_MCP_PYTHON}" -m coach_todoist_mcp.server
+  exec "${TODOIST_MCP_PYTHON}" -m todoist_mcp.server
 fi
 
 if [ -n "${TODOIST_MCP_SOURCE:-}" ] && command -v uvx >/dev/null 2>&1; then
   exec uvx --quiet --from "${TODOIST_MCP_SOURCE}" todoist-mcp
 fi
 
-exec python3 -m coach_todoist_mcp.server
+exec python3 -m todoist_mcp.server
