@@ -59,8 +59,11 @@ git clone <ваш-приватный-репозиторий-памяти> data/b
 git clone https://github.com/vefmvai/gtd-coach.git /opt/apps/gtd-coach-plugin
 git clone https://github.com/vefmvai/todoist-mcp.git /opt/apps/todoist-mcp
 git clone https://github.com/vefmvai/gcal-mcp.git   /opt/apps/gcal-mcp
-docker compose up -d --build
+./update.sh                            # первая сборка — той же командой, что и обновления
 ```
+
+Календарь можно не клонировать — тогда коуч будет без него, и команда
+обновления на это не пожалуется.
 
 **4. Познакомиться**
 
