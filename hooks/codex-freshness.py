@@ -29,7 +29,9 @@ VERSION_RE = re.compile(r"версия кодекса\s+(\d+)")
 # Молчание — самый дорогой из трёх исходов: его читают как «всё в порядке».
 COPY_RE = re.compile(r"^.*codex\.md.*версия кодекса\s+(\d+).*$", re.M)
 RULES_FILES = ("CLAUDE.md", "AGENTS.md", ".cursorrules")
-MARKER = ".loreground"
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _gate import свой_мозг  # noqa: E402
 
 
 def say(message):
@@ -68,8 +70,10 @@ def copy_block(text):
 def main():
     project = os.environ.get("CLAUDE_PROJECT_DIR") or os.getcwd()
 
-    # Ворота. Без метки сборки это чужой проект: сторож молчит и ничего не читает.
-    if not os.path.exists(os.path.join(project, MARKER)):
+    # Ворота: НАШ мозг, а не всякая метка Loreground. Чужой проект, даже собранный
+    # по тому же стандарту, — не наше дело: там свои сторожа, свежее наших.
+    # Разбор и цена решения — `_gate.py`.
+    if not свой_мозг(project):
         return
 
     # Источник: комплект рядом (режим «Указатель») либо перенесённая копия («Копия»).

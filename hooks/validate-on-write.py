@@ -20,7 +20,9 @@ import subprocess
 import sys
 import time
 
-MARKER = ".loreground"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _gate import свой_мозг  # noqa: E402
+
 CONFIG = "config.yaml"
 WRITERS = ("Write", "Edit", "MultiEdit", "NotebookEdit")
 HEAD = "Loreground, проверка базы после записи"
@@ -54,7 +56,8 @@ def main():
         return
 
     project = os.environ.get("CLAUDE_PROJECT_DIR") or event.get("cwd") or os.getcwd()
-    if not os.path.exists(os.path.join(project, MARKER)):
+    # Ворота: НАШ мозг, а не всякая метка Loreground. Разбор и цена решения — `_gate.py`.
+    if not свой_мозг(project):
         return
 
     path = (event.get("tool_input") or {}).get("file_path") or ""
